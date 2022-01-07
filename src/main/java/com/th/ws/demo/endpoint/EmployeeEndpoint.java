@@ -1,4 +1,4 @@
-package com.th.ws.demo;
+package com.th.ws.demo.endpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +35,4 @@ public class EmployeeEndpoint {
 		response.setEmployee(emp);
 		return response;
 	}
-
 }

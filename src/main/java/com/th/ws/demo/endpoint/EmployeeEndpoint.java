@@ -24,7 +24,7 @@ public class EmployeeEndpoint {
 
 	public EmployeeEndpoint() {
 		super();
-		LOG.info("EmployeeEmdPoint");
+		LOG.info("EmployeeEndPoint");
 	}
 
 	// similar to controller method

@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
@@ -43,10 +44,16 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		return wsdl11Definition;
 	}
 
+	@Primary
 	@Bean
 	public XsdSchema employeeSchema() {
 		LOG.info("employeeSchema");
 		return new SimpleXsdSchema(new ClassPathResource("employees.xsd"));
 	}
 
+//	@Bean
+//	public XsdSchema departmentSchema() {
+//		LOG.info("departmentSchema");
+//		return new SimpleXsdSchema(new ClassPathResource("department.xsd"));
+//	}
 }

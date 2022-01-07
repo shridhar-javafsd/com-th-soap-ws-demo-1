@@ -24,10 +24,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
+
 		<!-- tag::springws[] -->
 		<dependency>
 			<groupId>wsdl4j</groupId>
@@ -64,6 +66,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 			<!-- tag::xsd[] -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -80,10 +83,12 @@
 				<configuration>
 					<sources>
 						<source>${project.basedir}/src/main/resources/employees.xsd</source>
+						<!-- <source>${project.basedir}/src/main/resources/departments.xsd</source> -->
 					</sources>
 				</configuration>
 			</plugin>
 			<!-- end::xsd[] -->
+
 		</plugins>
 	</build>
 

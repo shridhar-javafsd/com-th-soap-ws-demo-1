@@ -1,10 +1,14 @@
 package com.th.ws.demo.model;
 
-//@Entity
-//@Table(name = "employee_table")
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee_table")
 public class Employee {
 
-//	@Id
+	@Id
 	private int employeeId;
 	private String firstName;
 	private double salary;

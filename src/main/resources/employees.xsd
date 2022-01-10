@@ -14,12 +14,12 @@
 	<xs:element name="getEmployeeResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="employee" type="tns:employee" />
+				<xs:element name="employeeType" type="tns:employeeType" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:complexType name="employee">
+	<xs:complexType name="employeeType">
 		<xs:sequence>
 			<xs:element name="employeeId" type="xs:int" />
 			<xs:element name="firstName" type="xs:string" />

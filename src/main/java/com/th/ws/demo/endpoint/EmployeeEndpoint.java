@@ -3,6 +3,7 @@ package com.th.ws.demo.endpoint;
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -40,14 +41,19 @@ public class EmployeeEndpoint {
 		Employee emp = employeeService.getEmployeeById(request.getEmployeeId());
 
 		EmployeeType empt = new EmployeeType();
+		
+		// see the import - import org.springframework.beans.BeanUtils; 
 
-		empt.setEmployeeId(emp.getEmployeeId());
-		empt.setFirstName(emp.getFirstName());
-		empt.setSalary(emp.getSalary());
+		BeanUtils.copyProperties(emp, empt);
+
+//		empt.setEmployeeId(emp.getEmployeeId());
+//		empt.setFirstName(emp.getFirstName());
+//		empt.setSalary(emp.getSalary());
 
 		response.setEmployeeType(empt);
 		LOG.info(emp.toString());
 
 		return response;
 	}
+
 }

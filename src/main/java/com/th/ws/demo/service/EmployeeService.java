@@ -12,10 +12,11 @@ import com.th.ws.demo.repository.EmployeeRepository;
 @Service
 public class EmployeeService {
 
-	@Autowired
+	@Autowired(required = true)
 	EmployeeRepository employeeRepository;
 
 	public Employee getEmployeeById(int employeeId) {
+
 		Optional<Employee> empOptional = employeeRepository.findById(employeeId);
 		if (empOptional.isPresent())
 			return empOptional.get();

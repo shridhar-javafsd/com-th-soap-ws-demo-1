@@ -28,8 +28,14 @@ public class EmployeeService {
 	}
 
 	public Employee updateEmployee(Employee employee) {
-
+		// logic
 		return employeeRepository.save(employee);
+	}
+
+	public Object deleteEmployee(int employeeId) {
+		// logic
+		employeeRepository.deleteById(employeeId);
+		return null;
 	}
 
 }

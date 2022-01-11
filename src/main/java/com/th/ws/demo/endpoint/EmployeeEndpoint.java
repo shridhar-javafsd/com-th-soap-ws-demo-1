@@ -14,9 +14,11 @@ import com.th.ws.demo.model.Employee;
 import com.th.ws.demo.service.EmployeeService;
 
 import https.www_torryharris_com.soap_ws_demo.AddEmployeeRequest;
+import https.www_torryharris_com.soap_ws_demo.DeleteEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.EmployeeType;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeResponse;
+import https.www_torryharris_com.soap_ws_demo.UpdateEmployeeRequest;
 
 @Endpoint
 public class EmployeeEndpoint {
@@ -63,39 +65,33 @@ public class EmployeeEndpoint {
 		response.setEmployeeType(empt);
 		return response;
 	}
-	
+
 	// updateEmployee
-//	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "updateEmployeeRequest")
-//	@ResponsePayload
-//	public GetEmployeeResponse updateEmployee(@RequestPayload UpdateEmployeeRequest request) {
-//		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
-//		GetEmployeeResponse response = new GetEmployeeResponse();
-//		Employee employee = new Employee();
-////		BeanUtils.copyProperties(employee, request); // wrong!
-//		BeanUtils.copyProperties(request, employee);
-//		LOG.info(employee.toString());
-//		EmployeeType empt = new EmployeeType();
-//		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
-//		response.setEmployeeType(empt);
-//		return response;
-//	}
+	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "updateEmployeeRequest")
+	@ResponsePayload
+	public GetEmployeeResponse updateEmployee(@RequestPayload UpdateEmployeeRequest request) {
+		LOG.info("updateEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
+		GetEmployeeResponse response = new GetEmployeeResponse();
+		Employee employee = new Employee();
+//		BeanUtils.copyProperties(employee, request); // wrong!
+		BeanUtils.copyProperties(request, employee);
+		LOG.info(employee.toString());
+		EmployeeType empt = new EmployeeType();
+		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
+		response.setEmployeeType(empt);
+		return response;
+	}
 
 	// deleteEmployee
-//	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "deleteEmployeeRequest")
-//	@ResponsePayload
-//	public GetEmployeeResponse updateEmployee(@RequestPayload DeleteEmployeeRequest request) {
-//		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
-//		GetEmployeeResponse response = new GetEmployeeResponse();
-//		Employee employee = new Employee();
-////		BeanUtils.copyProperties(employee, request); // wrong!
-//		BeanUtils.copyProperties(request, employee);
-//		LOG.info(employee.toString());
-//		EmployeeType empt = new EmployeeType();
-//		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
-//		response.setEmployeeType(empt);
-//		return response;
-//	}
-	
-	
+	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "deleteEmployeeRequest")
+	@ResponsePayload
+	public GetEmployeeResponse updateEmployee(@RequestPayload DeleteEmployeeRequest request) {
+		LOG.info("deleteEmployee " + request.getEmployeeId());
+		GetEmployeeResponse response = new GetEmployeeResponse();
+		EmployeeType empt = new EmployeeType();
+		BeanUtils.copyProperties(employeeService.deleteEmployee(request.getEmployeeId()), empt);
+		response.setEmployeeType(empt);
+		return response;
+	}
 
 }

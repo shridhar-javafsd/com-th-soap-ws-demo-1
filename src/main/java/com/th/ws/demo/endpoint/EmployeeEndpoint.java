@@ -1,6 +1,7 @@
 package com.th.ws.demo.endpoint;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -47,20 +48,11 @@ public class EmployeeEndpoint {
 		List<Employee> empList = employeeService.getAllEmployees();
 		List<EmployeeType> emptList = new ArrayList<>();
 		GetAllEmployeesResponse response = new GetAllEmployeesResponse();
-		EmployeeType empt = new EmployeeType();
-
-//		empList.forEach(emp -> {
-//			BeanUtils.copyProperties(emp, empt);
-//			response.getEmployeesType().add(empt); // code
-//			LOG.info(emp.getFirstName());
-//			LOG.info(empt.getFirstName());
-//		});
 
 		empList.forEach(emp -> {
+			EmployeeType empt = new EmployeeType();
 			BeanUtils.copyProperties(emp, empt);
 			emptList.add(empt);
-			LOG.info(emp.getFirstName());
-			LOG.info(empt.getFirstName());
 		});
 		response.getEmployeesType().addAll(emptList);
 		return response;

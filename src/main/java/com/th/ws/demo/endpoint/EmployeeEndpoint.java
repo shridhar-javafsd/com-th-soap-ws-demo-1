@@ -42,7 +42,7 @@ public class EmployeeEndpoint {
 	// getAllEmployees
 	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeeRequest")
 	@ResponsePayload
-	public GetAllEmployeesResponse getAllEmployees(@RequestPayload GetAllEmployeesRequest request) {
+	public GetAllEmployeesResponse getAllEmployees() {
 		LOG.info("getAllEmployees");
 		List<Employee> empList = employeeService.getAllEmployees();
 		GetAllEmployeesResponse response = new GetAllEmployeesResponse();

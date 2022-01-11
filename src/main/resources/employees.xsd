@@ -9,8 +9,8 @@
 	<xs:element name="getAllEmployeesResponse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="employeeType" type="tns:employeeType"
-	maxOccurs="unbounded" />
+				<xs:element name="employeesType" type="tns:employeeType"
+					maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -64,13 +64,6 @@
 			<xs:element name="employeeId" type="xs:int" />
 			<xs:element name="firstName" type="xs:string" />
 			<xs:element name="salary" type="xs:double" />
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:complexType name="employeeTypeList">
-		<xs:sequence>
-				<xs:element name="employeesList" type="tns:employeeType"
-	maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 

@@ -1,5 +1,7 @@
 package com.th.ws.demo.model;
 
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,7 +14,7 @@ public class Employee {
 	private int employeeId;
 	private String firstName;
 	private double salary;
-
+	
 	public Employee() {
 		super();
 	}

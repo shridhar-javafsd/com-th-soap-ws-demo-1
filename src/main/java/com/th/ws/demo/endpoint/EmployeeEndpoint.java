@@ -18,7 +18,6 @@ import com.th.ws.demo.service.EmployeeService;
 import https.www_torryharris_com.soap_ws_demo.AddEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.DeleteEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.EmployeeType;
-import https.www_torryharris_com.soap_ws_demo.GetAllEmployeesRequest;
 import https.www_torryharris_com.soap_ws_demo.GetAllEmployeesResponse;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeResponse;
@@ -40,7 +39,7 @@ public class EmployeeEndpoint {
 	// similar to controller method
 
 	// getAllEmployees
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeeRequest")
+	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeesRequest")
 	@ResponsePayload
 	public GetAllEmployeesResponse getAllEmployees() {
 		LOG.info("getAllEmployees");
@@ -50,6 +49,7 @@ public class EmployeeEndpoint {
 		for (Employee emp : empList) {
 			BeanUtils.copyProperties(emp, empt);
 			response.getEmployeeType().add(empt);
+			LOG.info(emp.toString());
 		}
 		return response;
 	}

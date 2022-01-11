@@ -4,9 +4,8 @@
 	<soapenv:Header />
 
 	<soapenv:Body>
-		<gs:getEmployeeRequest>
-			<gs:employeeId>111</gs:employeeId>
-		</gs:getEmployeeRequest>
+		<gs:getAllEmployeesRequest>
+		</gs:getAllEmployeesRequest>
 	</soapenv:Body>
 
 </soapenv:Envelope>

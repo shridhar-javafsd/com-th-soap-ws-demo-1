@@ -13,6 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import com.th.ws.demo.model.Employee;
 import com.th.ws.demo.service.EmployeeService;
 
+import https.www_torryharris_com.soap_ws_demo.AddEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.EmployeeType;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeResponse;
@@ -32,27 +33,33 @@ public class EmployeeEndpoint {
 
 	// similar to controller method
 
+	// getEmployeeById
 	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse getEmployee(@RequestPayload GetEmployeeRequest request) {
 		LOG.info("getEmployee " + request.getEmployeeId());
 		GetEmployeeResponse response = new GetEmployeeResponse();
-
 		Employee emp = employeeService.getEmployeeById(request.getEmployeeId());
-
 		EmployeeType empt = new EmployeeType();
-		
-		// see the import - import org.springframework.beans.BeanUtils; 
-
+		// see the import - import org.springframework.beans.BeanUtils;
 		BeanUtils.copyProperties(emp, empt);
-
-//		empt.setEmployeeId(emp.getEmployeeId());
-//		empt.setFirstName(emp.getFirstName());
-//		empt.setSalary(emp.getSalary());
-
 		response.setEmployeeType(empt);
 		LOG.info(emp.toString());
+		return response;
+	}
 
+	// addEmployee
+	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "addEmployeeRequest")
+	@ResponsePayload
+	public GetEmployeeResponse addEmployee(@RequestPayload AddEmployeeRequest request) {
+		LOG.info("addEmployee ");
+		GetEmployeeResponse response = new GetEmployeeResponse();
+		Employee employee = new Employee();
+		BeanUtils.copyProperties(employee, request);
+		LOG.info(employee.toString());
+		EmployeeType empt = new EmployeeType();
+		BeanUtils.copyProperties(employeeService.addEmployee(employee), empt);
+		response.setEmployeeType(empt);
 		return response;
 	}
 

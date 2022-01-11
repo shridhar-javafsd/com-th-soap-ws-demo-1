@@ -19,6 +19,16 @@
 		</xs:complexType>
 	</xs:element>
 
+	<xs:element name="addEmployeeRequest">
+		<xs:complexType>
+		<xs:sequence>
+			<xs:element name="employeeId" type="xs:int" />
+			<xs:element name="firstName" type="xs:string" />
+			<xs:element name="salary" type="xs:double" />
+		</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
 	<xs:complexType name="employeeType">
 		<xs:sequence>
 			<xs:element name="employeeId" type="xs:int" />

@@ -1,5 +1,7 @@
 package com.th.ws.demo.endpoint;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,8 @@ import com.th.ws.demo.service.EmployeeService;
 import https.www_torryharris_com.soap_ws_demo.AddEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.DeleteEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.EmployeeType;
+import https.www_torryharris_com.soap_ws_demo.GetAllEmployeesRequest;
+import https.www_torryharris_com.soap_ws_demo.GetAllEmployeesResponse;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeRequest;
 import https.www_torryharris_com.soap_ws_demo.GetEmployeeResponse;
 import https.www_torryharris_com.soap_ws_demo.UpdateEmployeeRequest;
@@ -34,6 +38,16 @@ public class EmployeeEndpoint {
 	}
 
 	// similar to controller method
+
+	// getAllEmployees
+	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeeRequest")
+	@ResponsePayload
+	public GetAllEmployeesResponse getAllEmployees(@RequestPayload GetAllEmployeesRequest request) {
+		LOG.info("getAllEmployees");
+		List<Employee> empList = employeeService.getAllEmployees();
+		GetAllEmployeesResponse response = new GetAllEmployeesResponse();
+		return response;
+	}
 
 	// getEmployeeById
 	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getEmployeeRequest")

@@ -1,5 +1,6 @@
 package com.th.ws.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ public class EmployeeService {
 
 	@Autowired(required = true)
 	EmployeeRepository employeeRepository;
+
+	public List<Employee> getAllEmployees() {
+		return employeeRepository.findAll();
+	}
 
 	public Employee getEmployeeById(int employeeId) {
 

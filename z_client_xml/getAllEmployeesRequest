@@ -3,11 +3,8 @@
    <soapenv:Header/>
 
    <soapenv:Body>
-         <gs:addEmployeeRequest>
-         <gs:employeeId>112</gs:employeeId>
-         <gs:firstName>Yet Some Name</gs:firstName>
-         <gs:salary>45000</gs:salary>
-	 </gs:addEmployeeRequest>
+         <gs:getAllEmployeesRequest>
+         <gs:getAllEmployeesRequest>
    </soapenv:Body>
    
 </soapenv:Envelope>

@@ -4,9 +4,8 @@
 
    <soapenv:Body>
          <gs:addEmployeeRequest>
-         <gs:employeeId>112</gs:employeeId>
-         <gs:firstName>Yet Some Name</gs:firstName>
-         <gs:salary>45000</gs:salary>
+         <gs:firstName>Gonu</gs:firstName>
+         <gs:salary>48000</gs:salary>
 	 </gs:addEmployeeRequest>
    </soapenv:Body>
    

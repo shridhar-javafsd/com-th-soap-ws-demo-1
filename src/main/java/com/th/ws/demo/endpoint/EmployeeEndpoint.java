@@ -1,12 +1,8 @@
 package com.th.ws.demo.endpoint;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
-import org.slf4j.Logger;
-
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -28,27 +24,17 @@ import https.www_torryharris_com.soap_ws_demo.UpdateEmployeeRequest;
 @Endpoint
 public class EmployeeEndpoint {
 
-	Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final String NAMESPACE_URI = "https://www.torryharris.com/soap-ws-demo";
 
 	@Autowired
 	EmployeeService employeeService;
 
-	public EmployeeEndpoint() {
-		super();
-		LOG.info("EmployeeEndPoint");
-	}
-
-	// similar to controller method
-
-	// getAllEmployees
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getAllEmployeesRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEmployeesRequest")
 	@ResponsePayload
 	public GetAllEmployeesResponse getAllEmployees() {
-		LOG.info("getAllEmployees");
 		List<Employee> empList = employeeService.getAllEmployees();
 		List<EmployeeType> emptList = new ArrayList<>();
 		GetAllEmployeesResponse response = new GetAllEmployeesResponse();
-
 		empList.forEach(emp -> {
 			EmployeeType empt = new EmployeeType();
 			BeanUtils.copyProperties(emp, empt);
@@ -58,58 +44,44 @@ public class EmployeeEndpoint {
 		return response;
 	}
 
-	// getEmployeeById
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "getEmployeeRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse getEmployee(@RequestPayload GetEmployeeRequest request) {
-		LOG.info("getEmployee " + request.getEmployeeId());
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		Employee emp = employeeService.getEmployeeById(request.getEmployeeId());
 		EmployeeType empt = new EmployeeType();
-		// see the import - import org.springframework.beans.BeanUtils;
 		BeanUtils.copyProperties(emp, empt);
 		response.setEmployeeType(empt);
-		LOG.info(emp.toString());
 		return response;
 	}
 
-	// addEmployee
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "addEmployeeRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "addEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse addEmployee(@RequestPayload AddEmployeeRequest request) {
-		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		Employee employee = new Employee();
-//		BeanUtils.copyProperties(employee, request); // wrong!
 		BeanUtils.copyProperties(request, employee);
-		LOG.info(employee.toString());
 		EmployeeType empt = new EmployeeType();
 		BeanUtils.copyProperties(employeeService.addEmployee(employee), empt);
 		response.setEmployeeType(empt);
 		return response;
 	}
 
-	// updateEmployee
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "updateEmployeeRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse updateEmployee(@RequestPayload UpdateEmployeeRequest request) {
-		LOG.info("updateEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		Employee employee = new Employee();
-//		BeanUtils.copyProperties(employee, request); // wrong!
 		BeanUtils.copyProperties(request, employee);
-		LOG.info(employee.toString());
 		EmployeeType empt = new EmployeeType();
 		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
 		response.setEmployeeType(empt);
 		return response;
 	}
 
-	// deleteEmployee
-	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "deleteEmployeeRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse updateEmployee(@RequestPayload DeleteEmployeeRequest request) {
-		LOG.info("deleteEmployee " + request.getEmployeeId());
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		EmployeeType empt = new EmployeeType();
 		BeanUtils.copyProperties(employeeService.deleteEmployee(request.getEmployeeId()), empt);

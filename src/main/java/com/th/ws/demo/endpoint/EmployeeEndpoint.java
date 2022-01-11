@@ -52,15 +52,50 @@ public class EmployeeEndpoint {
 	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "addEmployeeRequest")
 	@ResponsePayload
 	public GetEmployeeResponse addEmployee(@RequestPayload AddEmployeeRequest request) {
-		LOG.info("addEmployee ");
+		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		Employee employee = new Employee();
-		BeanUtils.copyProperties(employee, request);
+//		BeanUtils.copyProperties(employee, request); // wrong!
+		BeanUtils.copyProperties(request, employee);
 		LOG.info(employee.toString());
 		EmployeeType empt = new EmployeeType();
 		BeanUtils.copyProperties(employeeService.addEmployee(employee), empt);
 		response.setEmployeeType(empt);
 		return response;
 	}
+	
+	// updateEmployee
+//	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "updateEmployeeRequest")
+//	@ResponsePayload
+//	public GetEmployeeResponse updateEmployee(@RequestPayload UpdateEmployeeRequest request) {
+//		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
+//		GetEmployeeResponse response = new GetEmployeeResponse();
+//		Employee employee = new Employee();
+////		BeanUtils.copyProperties(employee, request); // wrong!
+//		BeanUtils.copyProperties(request, employee);
+//		LOG.info(employee.toString());
+//		EmployeeType empt = new EmployeeType();
+//		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
+//		response.setEmployeeType(empt);
+//		return response;
+//	}
+
+	// deleteEmployee
+//	@PayloadRoot(namespace = "https://www.torryharris.com/soap-ws-demo", localPart = "deleteEmployeeRequest")
+//	@ResponsePayload
+//	public GetEmployeeResponse updateEmployee(@RequestPayload DeleteEmployeeRequest request) {
+//		LOG.info("addEmployee " + request.getEmployeeId() + request.getFirstName() + request.getSalary());
+//		GetEmployeeResponse response = new GetEmployeeResponse();
+//		Employee employee = new Employee();
+////		BeanUtils.copyProperties(employee, request); // wrong!
+//		BeanUtils.copyProperties(request, employee);
+//		LOG.info(employee.toString());
+//		EmployeeType empt = new EmployeeType();
+//		BeanUtils.copyProperties(employeeService.updateEmployee(employee), empt);
+//		response.setEmployeeType(empt);
+//		return response;
+//	}
+	
+	
 
 }

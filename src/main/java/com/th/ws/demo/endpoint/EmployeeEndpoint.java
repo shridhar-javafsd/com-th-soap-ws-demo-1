@@ -46,6 +46,11 @@ public class EmployeeEndpoint {
 		LOG.info("getAllEmployees");
 		List<Employee> empList = employeeService.getAllEmployees();
 		GetAllEmployeesResponse response = new GetAllEmployeesResponse();
+		EmployeeType empt = new EmployeeType();
+		for (Employee emp : empList) {
+			BeanUtils.copyProperties(emp, empt);
+			response.getEmployeeType().add(empt);
+		}
 		return response;
 	}
 

@@ -4,6 +4,7 @@
 	elementFormDefault="qualified">
 
 	<xs:element name="getAllEmployeesRequest">
+		<xs:complexType />
 	</xs:element>
 
 	<xs:element name="getAllEmployeesResponse">

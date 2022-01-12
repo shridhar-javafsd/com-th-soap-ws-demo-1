@@ -30,6 +30,8 @@ public class EmployeeEndpoint {
 	@Autowired
 	EmployeeService employeeService;
 
+	// create getBySalary method here, in xsd and in consumer app 
+	
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEmployeesRequest")
 	@ResponsePayload
 	public GetAllEmployeesResponse getAllEmployees() {
